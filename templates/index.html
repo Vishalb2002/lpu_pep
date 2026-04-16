@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>User Registration</h2>
+
+        {% if message %}
+            <p class="success">{{ message }}</p>
+        {% endif %}
+
+        <form action="/addUser" method="POST">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="text" name="contact" placeholder="Enter Contact Number" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <button type="submit">Add User</button>
+        </form>
+
+        <a href="/getUsers"><button class="view-btn">View Users</button></a>
+    </div>
+
+</body>
+</html>
