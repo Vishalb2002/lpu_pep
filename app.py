@@ -2,6 +2,12 @@ from flask import Flask, request, jsonify, render_template
 from pymongo import MongoClient
 import os
 
+import socket
+
+@app.route("/")
+def home():
+    return f"Response from {socket.gethostname()}"
+
 app = Flask(__name__)
 
 # Load environment variables
