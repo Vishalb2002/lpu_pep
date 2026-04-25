@@ -1,12 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from pymongo import MongoClient
 import os
-
 import socket
-
-@app.route("/")
-def home():
-    return f"Response from {socket.gethostname()}"
 
 app = Flask(__name__)
 
@@ -19,9 +14,14 @@ client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 collection = db["users"]
 
+#@app.route("/")
+#def home():
+#    return render_template("index.html")
+
 @app.route("/")
 def home():
-    return render_template("index.html")
+    hostname = socket.gethostname()
+    return render_template("index.html", server=hostname
 
 @app.route("/getUsers")
 def get_users_page():
