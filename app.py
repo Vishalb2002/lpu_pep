@@ -1,13 +1,18 @@
 from flask import Flask, request, jsonify, render_template
 from pymongo import MongoClient
+import os
 
 app = Flask(__name__)
 
-# MongoDB connection
-MONGO_URL = "mongodb://admin:qwerty@localhost:27017"
-client = MongoClient(MONGO_URL)
 
-db = client["abhi"]
+#Importing the variables from envirement file (.env)
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME")
+
+# MongoDB connection
+client = MongoClient(MONGO_URI)
+
+db = client[DB_NAME]
 collection = db["users"]
 
 # Home page (form)
